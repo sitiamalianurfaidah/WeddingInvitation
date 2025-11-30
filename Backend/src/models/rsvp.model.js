@@ -39,3 +39,7 @@ exports.save = async (data) => {
 exports.getAll = async () => {
     return await Rsvp.find().sort({ timestamp: -1 });
 };
+
+exports.deleteById = async (id) => {
+    return await Rsvp.findByIdAndDelete(id);
+};
