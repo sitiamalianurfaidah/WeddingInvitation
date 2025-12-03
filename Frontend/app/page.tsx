@@ -37,7 +37,6 @@ export default function Home() {
 
       if (res.ok) {
         setStatus("success");
-        setResponseMsg("RSVP Berhasil! Mengalihkan...");
 
         if (result.redirectUrl) {
           setTimeout(() => {
@@ -109,7 +108,7 @@ export default function Home() {
               </div>
               <p className={styles.eventTime}>11.00 - 14.00</p>
               <div>
-                <p className={styles.eventLocation}>Bride's house</p>
+                <p className={styles.eventLocation}>Bride`s house</p>
                 <p className={styles.eventAddress}>
                   Jl. Jakarta Raya No.221, Cicaheum, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40291
                 </p>
