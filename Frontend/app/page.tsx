@@ -1,6 +1,7 @@
 "use client"; 
 
 import { useState } from "react";
+import styles from "./page.module.css";
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -39,11 +40,11 @@ export default function Home() {
         setResponseMsg("RSVP Berhasil! Mengalihkan...");
 
         if (result.redirectUrl) {
-        setTimeout(() => {
+          setTimeout(() => {
             if (result.redirectUrl.startsWith('http')) {
-                window.location.href = result.redirectUrl;
+              window.location.href = result.redirectUrl;
             } else {
-                window.location.href = `http://localhost:3000${result.redirectUrl}`;
+              window.location.href = `http://localhost:3000${result.redirectUrl}`;
             }
           }, 1500);
         }
@@ -59,96 +60,151 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDF2F0] flex items-center justify-center p-4 font-serif">
-      <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md w-full border border-rose-100">        
-        <div className="bg-rose-200 h-32 relative flex items-center justify-center">
-            <div className="text-center">
-                <h2 className="text-rose-800 text-sm tracking-widest uppercase font-semibold">The Wedding Of</h2>
-                <h1 className="text-rose-900 text-3xl font-bold mt-1" style={{fontFamily: 'cursive'}}>Malvin & Jeannete</h1>
-            </div>
+    <div className={styles.container}>
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <p className={styles.heroSubtitle}>THE WEDDING OF</p>
+          <h1 className={styles.heroTitle}>Josh & Nadine</h1>
+          <p className={styles.heroDate}>02 02 2026</p>
         </div>
+      </section>
 
-        <div className="p-8">
-          <div className="text-center mb-6">
-            <p className="text-gray-600 text-sm">We Look forward for your Attendance</p>
-            <div className="w-16 h-1 bg-rose-300 mx-auto mt-2 rounded-full"></div>
+      {/* Events Section */}
+      <section className={styles.eventsSection}>
+        <div className={styles.eventsContainer}>
+          {/* Wedding Ceremony Card */}
+          <div className={styles.eventCard}>
+            <div 
+              className={styles.cardImage} 
+              style={{ backgroundImage: "url('/wedding-ceremony.svg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            ></div>
+            <div className={styles.cardOverlay}></div>
+            <div className={styles.cardContent}>
+              <div>
+                <h2 className={styles.eventTitle}>Wedding Ceremony</h2>
+                <div className={styles.eventTitleLine}></div>
+              </div>
+              <p className={styles.eventTime}>07.00 - 08.00</p>
+              <div>
+                <p className={styles.eventLocation}>Raffles Hotel</p>
+                <p className={styles.eventAddress}>
+                  Jl. Terusan Jakarta No.53, Cicaheum, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40291
+                </p>
+              </div>
+            </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-rose-900 mb-1">Guest Name</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-rose-200 rounded-md focus:ring-2 focus:ring-rose-400 focus:outline-none text-gray-700"
-                placeholder="Your Name"
-              />
+          {/* Wedding Party Card */}
+          <div className={styles.eventCard}>
+            <div 
+              className={styles.cardImage} 
+              style={{ backgroundImage: "url('/wedding-party.svg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            ></div>
+            <div className={styles.cardOverlay}></div>
+            <div className={styles.cardContent}>
+              <div>
+                <h2 className={styles.eventTitle}>Wedding Party</h2>
+                <div className={styles.eventTitleLine}></div>
+              </div>
+              <p className={styles.eventTime}>11.00 - 14.00</p>
+              <div>
+                <p className={styles.eventLocation}>Bride's house</p>
+                <p className={styles.eventAddress}>
+                  Jl. Jakarta Raya No.221, Cicaheum, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40291
+                </p>
+              </div>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-rose-900 mb-1">Partner Name</label>
-              <input
-                type="text"
-                name="partner"
-                value={formData.partner}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-rose-200 rounded-md focus:ring-2 focus:ring-rose-400 focus:outline-none text-gray-700"
-                placeholder="Partner Name (Optional)"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-rose-900 mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border border-rose-200 rounded-md focus:ring-2 focus:ring-rose-400 focus:outline-none text-gray-700"
-                placeholder="email@example.com"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-rose-900 mb-1">Attendance</label>
-              <select
-                name="attendance"
-                value={formData.attendance}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-rose-200 rounded-md focus:ring-2 focus:ring-rose-400 focus:outline-none text-gray-700 bg-white"
-              >
-                <option value="Hadir">Will Attend</option>
-                <option value="Tidak">Cannot Attend</option>
-              </select>
-            </div>
-            <div>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={3}
-                className="w-full px-4 py-2 border border-rose-200 rounded-md focus:ring-2 focus:ring-rose-400 focus:outline-none text-gray-700"
-                placeholder="Write your wishes here..."
-              ></textarea>
-            </div>
-            {responseMsg && (
-                <div className={`text-center text-sm p-2 rounded ${status === 'error' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600'}`}>
-                    {responseMsg}
-                </div>
-            )}
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className={`w-full py-3 rounded-full text-white font-semibold shadow-md transition-all 
-                ${status === 'loading' ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#C27A72] hover:bg-[#A8655E]'}
-              `}
-            >
-              {status === 'loading' ? 'Sending RSVP...' : 'SUBMIT RSVP'}
-            </button>
-          </form>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* RSVP Section */}
+      <section className={styles.rsvpSection}>
+        <h2 className={styles.rsvpTitle}>We Look forward for your Attendance</h2>
+        
+        <form onSubmit={handleSubmit} className={styles.rsvpFormContainer}>
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Guest</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className={styles.formInput}
+              placeholder="Name"
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Partner</label>
+            <input
+              type="text"
+              name="partner"
+              value={formData.partner}
+              onChange={handleChange}
+              className={styles.formInput}
+              placeholder="Name"
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className={styles.formInput}
+              placeholder="Email"
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className={styles.formTextarea}
+              placeholder="Write your wishes here..."
+            ></textarea>
+          </div>
+
+          <div className={styles.checkboxGroup}>
+            <input
+              type="checkbox"
+              id="attending"
+              name="attendance"
+              checked={formData.attendance === "Hadir"}
+              onChange={(e) => setFormData({ ...formData, attendance: e.target.checked ? "Hadir" : "Tidak" })}
+              className={styles.checkbox}
+            />
+            <label htmlFor="attending" className={styles.checkboxLabel}>Attending</label>
+          </div>
+
+          {responseMsg && (
+            <div className={`${styles.statusMessage} ${status === 'error' ? styles.error : styles.success}`}>
+              {responseMsg}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className={styles.submitButton}
+          >
+            {status === 'loading' ? 'Sending RSVP...' : 'SUBMIT'}
+          </button>
+        </form>
+      </section>
+
+      {/* Bottom Section */}
+      <section className={styles.bottomSection}>
+        <div className={styles.bottomOverlay}></div>
+      </section>
     </div>
   );
 }

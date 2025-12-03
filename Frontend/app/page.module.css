@@ -1,0 +1,378 @@
+.root {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    font-family: 'Roboto', serif;
+}
+
+/* Hero Section */
+.heroSection {
+    width: 100%;
+    height: 933px;
+    background: url('/wedding-homepage.svg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.heroContent {
+    text-align: center;
+    z-index: 2;
+}
+
+.heroSubtitle {
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    font-family: 'Comfortaa', sans-serif;
+    margin-bottom: 20px;
+}
+
+.heroTitle {
+    font-size: 120px;
+    font-weight: 400;
+    color: #FFFFFF;
+    font-family: 'Allura', cursive;
+    line-height: 120%;
+    margin-bottom: 40px;
+}
+
+.heroDate {
+    font-size: 40px;
+    font-weight: 300;
+    color: #FFFFFF;
+    font-family: 'Comfortaa', sans-serif;
+    letter-spacing: 1px;
+}
+
+/* Events Section */
+.eventsSection {
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #FEDFE3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+.eventsContainer {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.eventCard {
+    width: 509.5px;
+    height: 624px;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 0px 40px rgba(231, 103, 103, 0.15);
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.cardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.cardContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    gap: 40px;
+    z-index: 3;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.eventTitle {
+    font-size: 39px;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: 'Comfortaa', sans-serif;
+    margin-bottom: 15px;
+}
+
+.eventTitleLine {
+    width: 387px;
+    height: 1px;
+    background-color: #EBA1DE;
+    margin: 0 auto;
+}
+
+.eventTime {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: 'Comfortaa', sans-serif;
+    margin: 20px 0;
+}
+
+.eventLocation {
+    font-size: 31px;
+    font-weight: 700;
+    color: #FFFFFF;
+    font-family: 'Comfortaa', sans-serif;
+    margin: 20px 0;
+}
+
+.eventAddress {
+    font-size: 20px;
+    font-weight: 300;
+    color: #FFFFFF;
+    font-family: 'Comfortaa', sans-serif;
+    line-height: 24px;
+    max-width: 404px;
+}
+
+/* RSVP Section */
+.rsvpSection {
+    width: 100%;
+    padding: 80px 20px;
+    background-color: #FEDFE3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.rsvpTitle {
+    font-size: 40px;
+    font-weight: 400;
+    color: #B95C50;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.rsvpFormContainer {
+    width: 100%;
+    max-width: 1016px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.formLabel {
+    font-size: 30px;
+    font-weight: 400;
+    color: #B95C50;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formInput {
+    width: 100%;
+    padding: 18px 16px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #DE847B;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #5A5B6A;
+}
+
+.formInput::placeholder {
+    color: #BB9096;
+}
+
+.formInput:focus {
+    outline: none;
+    border-color: #B95C50;
+    background-color: #FFFBFA;
+}
+
+.formSelect {
+    width: 100%;
+    padding: 18px 16px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #DE847B;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #5A5B6A;
+    cursor: pointer;
+}
+
+.formSelect:focus {
+    outline: none;
+    border-color: #B95C50;
+}
+
+.formTextarea {
+    width: 100%;
+    padding: 18px 16px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    border: 1px solid #DE847B;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    color: #5A5B6A;
+    resize: vertical;
+    min-height: 120px;
+    font-weight: 400;
+}
+
+.formTextarea::placeholder {
+    color: #BB9096;
+}
+
+.formTextarea:focus {
+    outline: none;
+    border-color: #B95C50;
+    background-color: #FFFBFA;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.checkbox {
+    width: 22.12px;
+    height: 22.12px;
+    accent-color: #B95C50;
+    cursor: pointer;
+}
+
+.checkboxLabel {
+    font-size: 20px;
+    color: #B95C50;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+}
+
+.submitButton {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #FFFFFF;
+    background-color: #B95C50;
+    border: 2px solid #B95C50;
+    border-radius: 30px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.submitButton:hover:not(:disabled) {
+    background-color: #A8655E;
+    border-color: #A8655E;
+}
+
+.submitButton:disabled {
+    background-color: #CCC;
+    border-color: #CCC;
+    cursor: not-allowed;
+}
+
+.statusMessage {
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.statusMessage.error {
+    background-color: #FFE0E0;
+    color: #B95C50;
+}
+
+.statusMessage.success {
+    background-color: #E0F5E0;
+    color: #4CAF50;
+}
+
+/* Bottom Section */
+.bottomSection {
+    width: 100%;
+    height: 499px;
+    background: url('/wedding-bottom.svg') center/cover no-repeat;
+    background-color: #200000;
+    position: relative;
+}
+
+.bottomOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .heroTitle {
+        font-size: 60px;
+    }
+
+    .heroSubtitle {
+        font-size: 24px;
+    }
+
+    .heroDate {
+        font-size: 24px;
+    }
+
+    .eventsContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .eventCard {
+        width: 100%;
+        max-width: 509.5px;
+    }
+
+    .eventTitleLine {
+        width: 100%;
+    }
+
+    .rsvpFormContainer {
+        max-width: 100%;
+    }
+}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import styles from "./dashboard.module.css";
 
 // Definisi tipe data Guest sesuai database
 type Guest = {
@@ -17,6 +18,7 @@ type Guest = {
     export default function Dashboard() {
     const [guests, setGuests] = useState<Guest[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // --- 1. Fungsi Ambil Data (Fetch List) ---
     const fetchGuests = async () => {
@@ -61,98 +63,142 @@ type Guest = {
         }
     };
 
+    const filteredGuests = guests.filter(guest =>
+        guest.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        guest.email.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const attendingCount = guests.filter(g => g.attendance === 'Hadir').length;
+    const notAttendingCount = guests.filter(g => g.attendance === 'Tidak').length;
+
     return (
-        <div className="min-h-screen bg-gray-50 p-8 font-sans text-gray-800">
-        <div className="max-w-6xl mx-auto">
-            
-            {/* Header Dashboard */}
-            <div className="flex justify-between items-center mb-8">
-            <div>
-                <h1 className="text-3xl font-bold text-rose-900">Guest List Dashboard</h1>
-                <p className="text-gray-500">Malvin & Jeannete Wedding</p>
-            </div>
-            <Link 
-                href="/" 
-                className="bg-white border border-rose-300 text-rose-600 px-4 py-2 rounded-lg hover:bg-rose-50 transition"
-            >
-                &larr; Back to Form
-            </Link>
-            </div>
-
-            {/* Stats Card Sederhana */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-green-400">
-                    <h3 className="text-gray-500 text-sm">Total Hadir</h3>
-                    <p className="text-2xl font-bold">{guests.filter(g => g.attendance === 'Hadir').length}</p>
+        <div className={styles.container}>
+            <div className={styles.wrapper}>
+                
+                {/* Header Section */}
+                <div className={styles.header}>
+                    <div className={styles.headerContent}>
+                        <div>
+                            <h1 className={styles.title}>Guest List Dashboard</h1>
+                            <p className={styles.subtitle}>Josh & Nadine Wedding</p>
+                        </div>
+                        <Link href="/" className={styles.backButton}>
+                            ← Back to Form
+                        </Link>
+                    </div>
                 </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-400">
-                    <h3 className="text-gray-500 text-sm">Tidak Hadir</h3>
-                    <p className="text-2xl font-bold">{guests.filter(g => g.attendance === 'Tidak').length}</p>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm border-l-4 border-blue-400">
-                    <h3 className="text-gray-500 text-sm">Total Respon</h3>
-                    <p className="text-2xl font-bold">{guests.length}</p>
-                </div>
-            </div>
 
-            <div className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
-            <table className="w-full text-left border-collapse">
-                <thead className="bg-rose-100 text-rose-900">
-                <tr>
-                    <th className="p-4 font-semibold text-sm">Name</th>
-                    <th className="p-4 font-semibold text-sm">Partner</th>
-                    <th className="p-4 font-semibold text-sm">Email</th>
-                    <th className="p-4 font-semibold text-sm">Status</th>
-                    <th className="p-4 font-semibold text-sm">Message</th>
-                    <th className="p-4 font-semibold text-sm text-center">Action</th> 
-                </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                {loading ? (
-                    <tr>
-                    <td colSpan={6} className="p-8 text-center text-gray-500">Loading data...</td>
-                    </tr>
-                ) : guests.length === 0 ? (
-                    <tr>
-                    <td colSpan={6} className="p-8 text-center text-gray-500">Belum ada tamu yang RSVP.</td>
-                    </tr>
-                ) : (
-                    guests.map((guest) => (
-                    <tr key={guest._id} className="hover:bg-gray-50 transition group">
-                        <td className="p-4 font-medium text-gray-900">{guest.name}</td>
-                        <td className="p-4 text-gray-600">{guest.partner}</td>
-                        <td className="p-4 text-gray-500 text-sm">{guest.email}</td>
-                        <td className="p-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-semibold 
-                            ${guest.attendance === 'Hadir' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                            {guest.attendance}
-                        </span>
-                        </td>
-                        <td className="p-4 text-gray-600 text-sm max-w-xs truncate" title={guest.message}>
-                        {guest.message || "-"}
-                        </td>
-                        
-                        {/* TOMBOL DELETE (TEMPAT SAMPAH) */}
-                        <td className="p-4 text-center">
-                        <button 
-                            onClick={() => handleDelete(guest._id)}
-                            className="text-gray-400 hover:text-red-600 transition p-2 rounded-full hover:bg-red-50"
-                            title="Delete Guest"
-                        >
-                            {/* Ikon Sampah (SVG) */}
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                            </svg>
-                        </button>
-                        </td>
-                    </tr>
-                    ))
-                )}
-                </tbody>
-            </table>
-            </div>
+                {/* Stats Cards */}
+                <div className={styles.statsGrid}>
+                    <div className={`${styles.statCard} ${styles.statCardGreen}`}>
+                        <div className={styles.statIcon}>✓</div>
+                        <div>
+                            <p className={styles.statLabel}>Attending</p>
+                            <p className={styles.statNumber}>{attendingCount}</p>
+                        </div>
+                    </div>
 
-        </div>
+                    <div className={`${styles.statCard} ${styles.statCardRed}`}>
+                        <div className={styles.statIcon}>✕</div>
+                        <div>
+                            <p className={styles.statLabel}>Not Attending</p>
+                            <p className={styles.statNumber}>{notAttendingCount}</p>
+                        </div>
+                    </div>
+
+                    <div className={`${styles.statCard} ${styles.statCardBlue}`}>
+                        <div className={styles.statIcon}>👥</div>
+                        <div>
+                            <p className={styles.statLabel}>Total Responses</p>
+                            <p className={styles.statNumber}>{guests.length}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Search Bar */}
+                <div className={styles.searchContainer}>
+                    <input
+                        type="text"
+                        placeholder="Search by name or email..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className={styles.searchInput}
+                    />
+                    <svg className={styles.searchIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+
+                {/* Table Section */}
+                <div className={styles.tableContainer}>
+                    <table className={styles.table}>
+                        <thead className={styles.tableHead}>
+                            <tr>
+                                <th className={styles.tableHeader}>Name</th>
+                                <th className={styles.tableHeader}>Partner</th>
+                                <th className={styles.tableHeader}>Email</th>
+                                <th className={styles.tableHeader}>Status</th>
+                                <th className={styles.tableHeader}>Message</th>
+                                <th className={styles.tableHeader}>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className={styles.tableBody}>
+                            {loading ? (
+                                <tr>
+                                    <td colSpan={6} className={styles.emptyCell}>
+                                        <div className={styles.loadingSpinner}></div>
+                                        Loading data...
+                                    </td>
+                                </tr>
+                            ) : filteredGuests.length === 0 ? (
+                                <tr>
+                                    <td colSpan={6} className={styles.emptyCell}>
+                                        {guests.length === 0 ? "No guests have RSVP'd yet." : "No results found."}
+                                    </td>
+                                </tr>
+                            ) : (
+                                filteredGuests.map((guest, index) => (
+                                    <tr key={guest._id} className={styles.tableRow} style={{ animationDelay: `${index * 50}ms` }}>
+                                        <td className={styles.tableCell}>
+                                            <span className={styles.nameBadge}>{guest.name}</span>
+                                        </td>
+                                        <td className={styles.tableCell}>
+                                            {guest.partner || <span className={styles.noData}>-</span>}
+                                        </td>
+                                        <td className={styles.tableCell}>
+                                            <a href={`mailto:${guest.email}`} className={styles.emailLink}>
+                                                {guest.email}
+                                            </a>
+                                        </td>
+                                        <td className={styles.tableCell}>
+                                            <span className={guest.attendance === 'Hadir' ? styles.statusAttending : styles.statusNotAttending}>
+                                                {guest.attendance}
+                                            </span>
+                                        </td>
+                                        <td className={styles.tableCell}>
+                                            <span className={styles.messageText} title={guest.message}>
+                                                {guest.message || <span className={styles.noData}>-</span>}
+                                            </span>
+                                        </td>
+                                        <td className={styles.tableCell}>
+                                            <button
+                                                onClick={() => handleDelete(guest._id)}
+                                                className={styles.deleteButton}
+                                                title="Delete Guest"
+                                            >
+                                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     );
 }
