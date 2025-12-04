@@ -3,14 +3,11 @@ const rsvpModel = require('../models/rsvp.model');
 exports.submitRsvp = async (req, res) => {
     const { name, partner, email, message, attendance } = req.body;
 
-    if (message && message.length > 50) { 
-        console.log("SERANGAN DOS TERDETEKSI...");
-        const complexity = message.length * 50000; 
-        let dummy = 0;
-        for (let i = 0; i < complexity; i++) {
-            dummy += Math.sqrt(i) * Math.tan(i) / Math.cos(i);
-        }
-        console.log("DOS Selesai.");
+    if (message && message.length > 200) { 
+        return res.status(400).json({ 
+            success: false, 
+            message: 'Pesan terlalu panjang! Maksimal 200 karakter demi keamanan server.' 
+        });
     }
 
     try {
@@ -26,7 +23,7 @@ exports.submitRsvp = async (req, res) => {
             success: true,
             message: 'RSVP Berhasil Disimpan!',
             data: savedData,
-            redirectUrl: `/redirect?next=http://localhost:3001/thanks?next=https://www.google.com`
+            redirectUrl: `/redirect?next=http://localhost:3001/thanks`
         });
 
     } catch (error) {

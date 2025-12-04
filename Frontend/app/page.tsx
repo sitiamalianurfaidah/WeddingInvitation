@@ -175,9 +175,20 @@ export default function Home() {
                 <label className={styles.formLabel}>Email</label>
                 <input type="email" name="email" value={formData.email} onChange={handleChange} required className={styles.formInput} placeholder="your@email.com" />
             </div>
+            
             <div className={styles.formGroup}>
                 <label className={styles.formLabel}>Wishes</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} className={styles.formTextarea} placeholder="Write something sweet..."></textarea>
+                <textarea 
+                  name="message" 
+                  value={formData.message} 
+                  onChange={handleChange} 
+                  className={styles.formTextarea} 
+                  placeholder="Write something sweet..."
+                  maxLength={200} 
+                ></textarea>
+                <div style={{ textAlign: 'right', fontSize: '12px', color: '#888', marginTop: '5px', fontFamily: 'var(--font-comfortaa)' }}>
+                    {formData.message.length}/200 characters
+                </div>
             </div>
 
             <div className={styles.checkboxWrapper}>
