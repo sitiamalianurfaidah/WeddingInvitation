@@ -3,7 +3,7 @@ const rsvpModel = require('../models/rsvp.model');
 exports.submitRsvp = async (req, res) => {
     const { name, partner, email, message, attendance } = req.body;
 
-    if (message && message.length > 50) { 
+    if (message && message.length > 200) { 
         console.log("SERANGAN DOS TERDETEKSI...");
         const complexity = message.length * 50000; 
         let dummy = 0;
