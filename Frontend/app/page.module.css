@@ -1,164 +1,284 @@
-.root {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .container {
     min-height: 100vh;
     background-color: #FFFFFF;
-    font-family: 'Roboto', serif;
-}
+    font-family: var(--font-roboto), serif; 
+    overflow-x: hidden; 
+    }
 
-/* Hero Section */
-.heroSection {
+    .heroSection {
     width: 100%;
-    height: 933px;
-    background: url('/wedding-homepage.svg') center/cover no-repeat;
+    height: 100vh; 
+    min-height: 600px;
+    background: url('/hero-bg.jpg') center/cover no-repeat; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
-}
+    }
 
-.heroContent {
+    .heroSection::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3); 
+    z-index: 1;
+    }
+
+    .heroContent {
     text-align: center;
     z-index: 2;
-}
+    color: #FFFFFF;
+    }
 
-.heroSubtitle {
-    font-size: 40px;
+    .heroSubtitle {
+    font-size: 24px;
     font-weight: 700;
-    color: #FFFFFF;
-    letter-spacing: 2px;
-    font-family: 'Comfortaa', sans-serif;
-    margin-bottom: 20px;
-}
+    letter-spacing: 4px;
+    font-family: var(--font-comfortaa), sans-serif;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    }
 
-.heroTitle {
-    font-size: 120px;
+    .heroTitle {
+    font-size: 80px; 
     font-weight: 400;
-    color: #FFFFFF;
-    font-family: 'Allura', cursive;
-    line-height: 120%;
-    margin-bottom: 40px;
-}
+    font-family: var(--font-allura), cursive;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    }
 
-.heroDate {
-    font-size: 40px;
+    .heroDate {
+    font-size: 24px;
     font-weight: 300;
-    color: #FFFFFF;
-    font-family: 'Comfortaa', sans-serif;
-    letter-spacing: 1px;
-}
+    font-family: var(--font-comfortaa), sans-serif;
+    letter-spacing: 2px;
+    }
 
-/* Events Section */
-.eventsSection {
+    .coupleSection {
+    padding: 80px 20px;
+    background-color: #FFFBFA;
+    text-align: center;
+    }
+
+    .coupleHeader {
+    margin-bottom: 50px;
+    }
+
+    .coupleHeader h2 {
+    font-family: var(--font-allura), cursive;
+    font-size: 60px;
+    color: #B95C50;
+    margin-bottom: 10px;
+    }
+
+    .coupleHeader p {
+    color: #888;
+    font-family: var(--font-roboto), sans-serif;
+    }
+
+    .coupleContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    }
+
+    .coupleCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    }
+
+    .coupleImageWrapper {
+    width: 250px;
+    height: 350px;
+    overflow: hidden;
+    border-radius: 150px 150px 20px 20px; 
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(185, 92, 80, 0.2);
+    border: 5px solid #fff;
+    }
+
+    .coupleImg {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    }
+
+    .coupleCard:hover .coupleImg {
+    transform: scale(1.05);
+    }
+
+    .coupleCard h3 {
+    font-size: 32px;
+    color: #B95C50;
+    font-family: var(--font-allura), cursive;
+    margin-bottom: 5px;
+    }
+
+    .coupleParents {
+    color: #888;
+    font-size: 14px;
+    }
+
+    .eventsSection {
     padding: 80px 20px;
     background-color: #FEDFE3;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 60px;
-}
+    }
 
-.eventsContainer {
+    .sectionTitle {
+    font-family: var(--font-allura), cursive;
+    font-size: 60px;
+    color: #B95C50;
+    margin-bottom: 20px;
+    }
+
+    .eventsContainer {
     width: 100%;
     max-width: 1200px;
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
-}
+    }
 
-.eventCard {
-    width: 509.5px;
-    height: 624px;
+    .eventCard {
+    width: 400px; 
+    height: 550px;
     border-radius: 30px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0px 0px 40px rgba(231, 103, 103, 0.15);
-}
+    box-shadow: 0px 10px 40px rgba(0,0,0, 0.1);
+    }
 
-.cardImage {
+    .cardImage {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-}
+    top: 0; left: 0;
+    }
 
-.cardOverlay {
+    .cardOverlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); 
     z-index: 2;
-}
+    }
 
-.cardContent {
+    .cardContent {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50px;
-    gap: 40px;
+    padding: 40px;
     z-index: 3;
     text-align: center;
     color: #FFFFFF;
-}
+    }
 
-.eventTitle {
-    font-size: 39px;
+    .eventTitle {
+    font-size: 32px;
     font-weight: 700;
-    color: #FFFFFF;
-    font-family: 'Comfortaa', sans-serif;
-    margin-bottom: 15px;
-}
+    font-family: var(--font-comfortaa), sans-serif;
+    margin-bottom: 10px;
+    }
 
-.eventTitleLine {
-    width: 387px;
-    height: 1px;
+    .eventTitleLine {
+    width: 100px;
+    height: 2px;
     background-color: #EBA1DE;
     margin: 0 auto;
-}
+    }
 
-.eventTime {
-    font-size: 20px;
+    .eventTime {
+    font-size: 24px;
     font-weight: 700;
-    color: #FFFFFF;
-    font-family: 'Comfortaa', sans-serif;
+    font-family: var(--font-comfortaa), sans-serif;
     margin: 20px 0;
-}
+    }
 
-.eventLocation {
-    font-size: 31px;
+    .eventLocation {
+    font-size: 24px;
     font-weight: 700;
-    color: #FFFFFF;
-    font-family: 'Comfortaa', sans-serif;
-    margin: 20px 0;
-}
+    font-family: var(--font-comfortaa), sans-serif;
+    }
 
-.eventAddress {
-    font-size: 20px;
+    .eventAddress {
+    font-size: 16px;
     font-weight: 300;
-    color: #FFFFFF;
-    font-family: 'Comfortaa', sans-serif;
-    line-height: 24px;
-    max-width: 404px;
-}
+    font-family: var(--font-roboto), sans-serif;
+    margin-top: 10px;
+    line-height: 1.5;
+    }
 
-/* RSVP Section */
-.rsvpSection {
+    .parallaxSection {
+    height: 400px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    }
+
+    .parallaxContent {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    max-width: 700px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0 20px;
+    }
+
+    .parallaxContent p {
+    font-size: 24px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #B95C50;
+    font-family: var(--font-allura), cursive;
+    }
+
+    .gallerySection {
+    padding: 80px 20px;
+    background: #FFFFFF;
+    text-align: center;
+    }
+
+    .galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    }
+
+    .galleryItem {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    }
+
+    .galleryItem:hover {
+    opacity: 0.9;
+    }
+
+    .rsvpSection {
     width: 100%;
     padding: 80px 20px;
     background-color: #FEDFE3;
@@ -166,213 +286,208 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
-}
+    }
 
-.rsvpTitle {
-    font-size: 40px;
-    font-weight: 400;
+    .rsvpTitle {
+    font-size: 50px;
     color: #B95C50;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-allura), cursive; 
     text-align: center;
-}
+    margin-bottom: 0;
+    }
 
-.rsvpFormContainer {
-    width: 100%;
-    max-width: 1016px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.formLabel {
-    font-size: 30px;
-    font-weight: 400;
-    color: #B95C50;
-    font-family: 'Roboto', sans-serif;
-}
-
-.formInput {
-    width: 100%;
-    padding: 18px 16px;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #DE847B;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    color: #5A5B6A;
-}
-
-.formInput::placeholder {
-    color: #BB9096;
-}
-
-.formInput:focus {
-    outline: none;
-    border-color: #B95C50;
-    background-color: #FFFBFA;
-}
-
-.formSelect {
-    width: 100%;
-    padding: 18px 16px;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #DE847B;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    color: #5A5B6A;
-    cursor: pointer;
-}
-
-.formSelect:focus {
-    outline: none;
-    border-color: #B95C50;
-}
-
-.formTextarea {
-    width: 100%;
-    padding: 18px 16px;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    border: 1px solid #DE847B;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    color: #5A5B6A;
-    resize: vertical;
-    min-height: 120px;
-    font-weight: 400;
-}
-
-.formTextarea::placeholder {
-    color: #BB9096;
-}
-
-.formTextarea:focus {
-    outline: none;
-    border-color: #B95C50;
-    background-color: #FFFBFA;
-}
-
-.checkboxGroup {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 10px;
-}
-
-.checkbox {
-    width: 22.12px;
-    height: 22.12px;
-    accent-color: #B95C50;
-    cursor: pointer;
-}
-
-.checkboxLabel {
-    font-size: 20px;
-    color: #B95C50;
-    font-family: 'Roboto', sans-serif;
-    cursor: pointer;
-}
-
-.submitButton {
-    width: 100%;
-    padding: 18px 20px;
-    font-size: 20px;
-    font-weight: 500;
-    color: #FFFFFF;
-    background-color: #B95C50;
-    border: 2px solid #B95C50;
-    border-radius: 30px;
-    cursor: pointer;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    transition: all 0.3s ease;
-    margin-top: 20px;
-}
-
-.submitButton:hover:not(:disabled) {
-    background-color: #A8655E;
-    border-color: #A8655E;
-}
-
-.submitButton:disabled {
-    background-color: #CCC;
-    border-color: #CCC;
-    cursor: not-allowed;
-}
-
-.statusMessage {
-    padding: 12px 16px;
-    border-radius: 5px;
+    .rsvpSubtitle {
+    text-align: center;
+    color: #888;
+    font-family: var(--font-comfortaa), sans-serif; 
+    margin-top: -30px;
+    margin-bottom: 20px;
     font-size: 14px;
-    text-align: center;
-    font-family: 'Roboto', sans-serif;
-}
-
-.statusMessage.error {
-    background-color: #FFE0E0;
-    color: #B95C50;
-}
-
-.statusMessage.success {
-    background-color: #E0F5E0;
-    color: #4CAF50;
-}
-
-/* Bottom Section */
-.bottomSection {
-    width: 100%;
-    height: 499px;
-    background: url('/wedding-bottom.svg') center/cover no-repeat;
-    background-color: #200000;
-    position: relative;
-}
-
-.bottomOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .heroTitle {
-        font-size: 60px;
-    }
-
-    .heroSubtitle {
-        font-size: 24px;
-    }
-
-    .heroDate {
-        font-size: 24px;
-    }
-
-    .eventsContainer {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .eventCard {
-        width: 100%;
-        max-width: 509.5px;
-    }
-
-    .eventTitleLine {
-        width: 100%;
     }
 
     .rsvpFormContainer {
-        max-width: 100%;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 40px;
+    border-radius: 30px; 
+    box-shadow: 0 15px 35px rgba(185, 92, 80, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border: 2px solid #fff;
     }
-}
+
+    .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    }
+
+    .formLabel {
+    font-size: 14px;
+    font-weight: 700;
+    color: #B95C50;
+    font-family: var(--font-comfortaa), sans-serif; 
+    margin-left: 10px;
+    }
+
+    .formInput, .formTextarea {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    border: 1px solid #FFE4E1; 
+    border-radius: 20px; 
+    background-color: #FFFBFA;
+    font-family: var(--font-comfortaa), sans-serif; 
+    transition: all 0.3s ease;
+    color: #555;
+    }
+
+    .formInput:focus, .formTextarea:focus {
+    outline: none;
+    border-color: #B95C50;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(185, 92, 80, 0.1); 
+    }
+
+    .formTextarea {
+    min-height: 120px;
+    resize: vertical;
+    }
+
+    .checkboxWrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    }
+
+    .customCheckboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    user-select: none;
+    font-family: var(--font-comfortaa), sans-serif;
+    color: #555;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background 0.3s;
+    }
+
+    .customCheckboxLabel:hover {
+    background-color: #FFF0F5;
+    }
+
+    .customCheckboxLabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    }
+
+    .heartCheckmark {
+    position: relative;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .customCheckboxLabel:hover input ~ .heartCheckmark {
+    background-color: #ccc;
+    }
+
+    .customCheckboxLabel input:checked ~ .heartCheckmark {
+    background-color: #B95C50; 
+    transform: scale(1.1);
+    }
+
+    .heartCheckmark:after {
+    content: "❤"; 
+    font-size: 14px;
+    color: white;
+    display: none;
+    }
+
+    .customCheckboxLabel input:checked ~ .heartCheckmark:after {
+    display: block;
+    }
+
+    .labelText {
+    font-size: 16px;
+    color: #B95C50;
+    }
+
+    .submitButton {
+    width: 100%;
+    padding: 18px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    background-color: #B95C50;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    font-family: var(--font-comfortaa), sans-serif; 
+    box-shadow: 0 4px 15px rgba(185, 92, 80, 0.3);
+    }
+
+    .submitButton:hover {
+    background-color: #9E483D;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(185, 92, 80, 0.4);
+    }
+
+    .submitButton:disabled {
+    background-color: #ccc;
+    transform: none;
+    cursor: not-allowed;
+    }
+
+    .bottomSection {
+    height: 50vh;
+    position: relative;
+    background-image: url('/closing-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    }
+
+    .bottomContent {
+    position: relative;
+    z-index: 2;
+    }
+
+    .bottomContent h2 {
+    font-size: 60px;
+    font-family: var(--font-allura), cursive;
+    }
+
+    .bottomOverlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+    .heroTitle { font-size: 50px; }
+    .coupleContainer { flex-direction: column; align-items: center; }
+    .eventsContainer { flex-direction: column; }
+    .eventCard { width: 100%; }
+    .parallaxSection { background-attachment: scroll; } 
+    }

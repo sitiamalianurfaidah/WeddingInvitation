@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./dashboard.module.css";
 
-// Definisi tipe data Guest sesuai database
 type Guest = {
     _id: string;
     name: string;
@@ -20,10 +19,8 @@ type Guest = {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
 
-    // --- 1. Fungsi Ambil Data (Fetch List) ---
     const fetchGuests = async () => {
         try {
-        // Pastikan backend jalan di port 3000
         const res = await fetch("http://localhost:3000/api/rsvp/list");
         const json = await res.json();
         if (json.success) {
@@ -36,14 +33,11 @@ type Guest = {
         }
     };
 
-    // Panggil fetch saat halaman dibuka pertama kali
     useEffect(() => {
         fetchGuests();
     }, []);
 
-    // --- 2. Fungsi Hapus Data (Delete) ---
     const handleDelete = async (id: string) => {
-        // Konfirmasi dulu biar gak kepencet
         if (!window.confirm("Yakin mau hapus data ini?")) return;
 
         try {
@@ -53,7 +47,6 @@ type Guest = {
         const json = await res.json();
 
         if (json.success) {
-            // Kalau sukses di backend, kita hapus juga di tampilan (State) biar gak usah refresh page
             setGuests((prevGuests) => prevGuests.filter((guest) => guest._id !== id));
         } else {
             alert("Gagal menghapus: " + json.message);
@@ -75,12 +68,11 @@ type Guest = {
         <div className={styles.container}>
             <div className={styles.wrapper}>
                 
-                {/* Header Section */}
                 <div className={styles.header}>
                     <div className={styles.headerContent}>
                         <div>
                             <h1 className={styles.title}>Guest List Dashboard</h1>
-                            <p className={styles.subtitle}>Josh & Nadine Wedding</p>
+                            <p className={styles.subtitle}>Faishal & Nadin Wedding</p>
                         </div>
                         <Link href="/" className={styles.backButton}>
                             ← Back to Form
@@ -88,7 +80,6 @@ type Guest = {
                     </div>
                 </div>
 
-                {/* Stats Cards */}
                 <div className={styles.statsGrid}>
                     <div className={`${styles.statCard} ${styles.statCardGreen}`}>
                         <div className={styles.statIcon}>✓</div>
@@ -115,7 +106,6 @@ type Guest = {
                     </div>
                 </div>
 
-                {/* Search Bar */}
                 <div className={styles.searchContainer}>
                     <input
                         type="text"
@@ -129,7 +119,6 @@ type Guest = {
                     </svg>
                 </div>
 
-                {/* Table Section */}
                 <div className={styles.tableContainer}>
                     <table className={styles.table}>
                         <thead className={styles.tableHead}>

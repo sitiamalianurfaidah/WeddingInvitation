@@ -22,4 +22,3 @@ const getMongoClient = () => {
 };
 
 module.exports = { connectDB, getMongoClient };
-

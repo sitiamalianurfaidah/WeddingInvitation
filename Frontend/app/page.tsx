@@ -1,15 +1,16 @@
-"use client"; 
+"use client";
 
 import { useState } from "react";
 import styles from "./page.module.css";
+import Image from "next/image";
 
 export default function Home() {
   const [formData, setFormData] = useState({
     name: "",
     partner: "",
     email: "",
-    attendance: "Hadir", 
-    message: "", 
+    attendance: "Hadir",
+    message: "",
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -27,9 +28,7 @@ export default function Home() {
     try {
       const res = await fetch("http://localhost:3000/api/rsvp/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
@@ -37,7 +36,6 @@ export default function Home() {
 
       if (res.ok) {
         setStatus("success");
-
         if (result.redirectUrl) {
           setTimeout(() => {
             if (result.redirectUrl.startsWith('http')) {
@@ -53,30 +51,52 @@ export default function Home() {
       }
     } catch (error) {
       setStatus("error");
-      setResponseMsg("Gagal menghubungi server. (Cek apakah Backend nyala?)");
+      setResponseMsg("Gagal menghubungi server.");
       console.error(error);
     }
   };
 
   return (
     <div className={styles.container}>
-      {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroContent}>
           <p className={styles.heroSubtitle}>THE WEDDING OF</p>
-          <h1 className={styles.heroTitle}>Josh & Nadine</h1>
-          <p className={styles.heroDate}>02 02 2026</p>
+          <h1 className={styles.heroTitle}>Faishal & Nadin</h1>
+          <p className={styles.heroDate}>08 . 08 . 2025</p>
         </div>
       </section>
 
-      {/* Events Section */}
+      <section className={styles.coupleSection}>
+        <div className={styles.coupleHeader}>
+          <h2>Groom & Bride</h2>
+          <p>Together with our families, we request the honor of your presence.</p>
+        </div>
+        <div className={styles.coupleContainer}>
+          <div className={styles.coupleCard}>
+            <div className={styles.coupleImageWrapper}>
+                <Image src="/groom.jpg" alt="Faishal" width={400} height={600} className={styles.coupleImg} />
+            </div>
+            <h3>Faishal Tanjung</h3>
+            <p className={styles.coupleParents}>Son of Mr. Rasjwardi Tanjung & Mrs. Linda Melinda</p>
+          </div>
+          
+          <div className={styles.coupleCard}>
+            <div className={styles.coupleImageWrapper}>
+                <Image src="/bride.jpg" alt="Nadin" width={400} height={600} className={styles.coupleImg} />
+            </div>
+            <h3>Nadin Amizah</h3>
+            <p className={styles.coupleParents}>Daughter of Mr. Raja & Mrs. Intan Gurnita Widiatie</p>
+          </div>
+        </div>
+      </section>
+
       <section className={styles.eventsSection}>
+        <h2 className={styles.sectionTitle}>Save The Date</h2>
         <div className={styles.eventsContainer}>
-          {/* Wedding Ceremony Card */}
           <div className={styles.eventCard}>
-            <div 
-              className={styles.cardImage} 
-              style={{ backgroundImage: "url('/wedding-ceremony.svg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            <div
+              className={styles.cardImage}
+              style={{ backgroundImage: "url('/wedding-ceremony.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
             ></div>
             <div className={styles.cardOverlay}></div>
             <div className={styles.cardContent}>
@@ -88,17 +108,16 @@ export default function Home() {
               <div>
                 <p className={styles.eventLocation}>Raffles Hotel</p>
                 <p className={styles.eventAddress}>
-                  Jl. Terusan Jakarta No.53, Cicaheum, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40291
+                  Jl. Terusan Jakarta No.53, Bandung
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Wedding Party Card */}
           <div className={styles.eventCard}>
-            <div 
-              className={styles.cardImage} 
-              style={{ backgroundImage: "url('/wedding-party.svg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            <div
+              className={styles.cardImage}
+              style={{ backgroundImage: "url('/wedding-party.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}
             ></div>
             <div className={styles.cardOverlay}></div>
             <div className={styles.cardContent}>
@@ -110,7 +129,7 @@ export default function Home() {
               <div>
                 <p className={styles.eventLocation}>Bride`s house</p>
                 <p className={styles.eventAddress}>
-                  Jl. Jakarta Raya No.221, Cicaheum, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40291
+                  Jl. Jakarta Raya No.221, Bandung
                 </p>
               </div>
             </div>
@@ -118,91 +137,80 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RSVP Section */}
+      <section 
+        className={styles.parallaxSection}
+        style={{ backgroundImage: "url('/parallax-bg.jpg')" }}
+      >
+        <div className={styles.parallaxContent}>
+          <p>&ldquo;And I knew exactly how old Walt Disney&apos;s Cinderella felt when she found her prince&rdquo;</p>
+        </div>
+      </section>
+
+      <section className={styles.gallerySection}>
+        <h2 className={styles.sectionTitle}>Our Moments</h2>
+        <div className={styles.galleryGrid}>
+            <Image src="/gallery-1.jpg" alt="Moment 1" width={400} height={500} className={styles.galleryItem} />
+            <Image src="/gallery-2.jpg" alt="Moment 2" width={400} height={500} className={styles.galleryItem} />
+            <Image src="/gallery-3.jpg" alt="Moment 3" width={400} height={500} className={styles.galleryItem} />
+            <Image src="/gallery-4.jpg" alt="Moment 4" width={400} height={500} className={styles.galleryItem} />
+            <Image src="/gallery-5.jpg" alt="Moment 5" width={400} height={500} className={styles.galleryItem} />
+            <Image src="/gallery-6.jpg" alt="Moment 6" width={400} height={500} className={styles.galleryItem} />
+        </div>
+      </section>
+
       <section className={styles.rsvpSection}>
-        <h2 className={styles.rsvpTitle}>We Look forward for your Attendance</h2>
+        <h2 className={styles.rsvpTitle}>RSVP</h2>
+        <p className={styles.rsvpSubtitle}>We look forward to celebrating with you!</p>
         
         <form onSubmit={handleSubmit} className={styles.rsvpFormContainer}>
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Guest</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className={styles.formInput}
-              placeholder="Name"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Partner</label>
-            <input
-              type="text"
-              name="partner"
-              value={formData.partner}
-              onChange={handleChange}
-              className={styles.formInput}
-              placeholder="Name"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className={styles.formInput}
-              placeholder="Email"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className={styles.formTextarea}
-              placeholder="Write your wishes here..."
-            ></textarea>
-          </div>
-
-          <div className={styles.checkboxGroup}>
-            <input
-              type="checkbox"
-              id="attending"
-              name="attendance"
-              checked={formData.attendance === "Hadir"}
-              onChange={(e) => setFormData({ ...formData, attendance: e.target.checked ? "Hadir" : "Tidak" })}
-              className={styles.checkbox}
-            />
-            <label htmlFor="attending" className={styles.checkboxLabel}>Attending</label>
-          </div>
-
-          {responseMsg && (
-            <div className={`${styles.statusMessage} ${status === 'error' ? styles.error : styles.success}`}>
-              {responseMsg}
+            <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Guest Name</label>
+                <input type="text" name="name" value={formData.name} onChange={handleChange} required className={styles.formInput} placeholder="Write your name" />
             </div>
-          )}
+            <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Partner</label>
+                <input type="text" name="partner" value={formData.partner} onChange={handleChange} className={styles.formInput} placeholder="Partner Name" />
+            </div>
+            <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Email</label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange} required className={styles.formInput} placeholder="your@email.com" />
+            </div>
+            <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Wishes</label>
+                <textarea name="message" value={formData.message} onChange={handleChange} className={styles.formTextarea} placeholder="Write something sweet..."></textarea>
+            </div>
 
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className={styles.submitButton}
-          >
-            {status === 'loading' ? 'Sending RSVP...' : 'SUBMIT'}
-          </button>
+            <div className={styles.checkboxWrapper}>
+                <label className={styles.customCheckboxLabel}>
+                  <input 
+                    type="checkbox" 
+                    id="attending" 
+                    name="attendance" 
+                    checked={formData.attendance === "Hadir"} 
+                    onChange={(e) => setFormData({ ...formData, attendance: e.target.checked ? "Hadir" : "Tidak" })} 
+                  />
+                  <span className={styles.heartCheckmark}></span>
+                  <span className={styles.labelText}>Yes, I will attend!</span>
+                </label>
+            </div>
+
+            {responseMsg && (
+                <div className={`${styles.statusMessage} ${status === 'error' ? styles.error : styles.success}`}>
+                {responseMsg}
+                </div>
+            )}
+            <button type="submit" disabled={status === 'loading'} className={styles.submitButton}>
+                {status === 'loading' ? 'Sending RSVP...' : 'Confirm Attendance'}
+            </button>
         </form>
       </section>
 
-      {/* Bottom Section */}
       <section className={styles.bottomSection}>
-        <div className={styles.bottomOverlay}></div>
+          <div className={styles.bottomContent}>
+              <h2>Thank You</h2>
+              <p>Faishal & Nadin</p>
+          </div>
+          <div className={styles.bottomOverlay}></div>
       </section>
     </div>
   );

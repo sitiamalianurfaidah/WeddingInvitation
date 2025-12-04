@@ -2,6 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import Image from "next/image"; 
 import styles from "./thanks.module.css";
 
 function ThanksContent() {
@@ -12,32 +13,38 @@ function ThanksContent() {
         <div className={styles.container}>
             <div className={styles.card}>
                 
-                {/* Success Icon */}
+                <div className={styles.imageWrapper}>
+                    <Image 
+                        src="/closing-bg.jpg" 
+                        alt="Faishal & Nadine" 
+                        fill
+                        className={styles.coupleImage} 
+                    />
+                </div>
+
                 <div className={styles.iconContainer}>
                     <svg className={styles.checkmark} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
 
-                {/* Title */}
                 <h1 className={styles.title}>Thank You!</h1>
                 
-                {/* Message */}
                 <p className={styles.message}>
-                    Your RSVP has been received successfully. We can&apos;t wait to celebrate with you on our special day!
+                    Your RSVP has been received. <br/>
+                    We can&apos;t wait to see you there!
                 </p>
 
-                {/* Decorative Line */}
                 <div className={styles.decorativeLine}></div>
 
                 {/* Details */}
                 <div className={styles.details}>
                     <p className={styles.detailText}>
-                        A confirmation email will be sent to you shortly with all the event details.
+                        See you on our special day,<br/>
+                        <span className={styles.names}>Faishal & Nadin</span>
                     </p>
                 </div>
 
-                {/* Button */}
                 <a 
                     href={redirectTarget} 
                     className={styles.backButton}
