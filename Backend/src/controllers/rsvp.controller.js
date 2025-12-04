@@ -3,10 +3,10 @@ const rsvpModel = require('../models/rsvp.model');
 exports.submitRsvp = async (req, res) => {
     const { name, partner, email, message, attendance } = req.body;
 
-    if (message && message.length > 200) { 
+    if (message && message.length > 5000) { 
         return res.status(400).json({ 
             success: false, 
-            message: 'Pesan terlalu panjang! Maksimal 200 karakter demi keamanan server.' 
+            message: 'Pesan terlalu panjang! Maksimal 5000 karakter demi keamanan server.' 
         });
     }
 

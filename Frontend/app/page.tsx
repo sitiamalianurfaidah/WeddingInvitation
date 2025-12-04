@@ -184,10 +184,10 @@ export default function Home() {
                   onChange={handleChange} 
                   className={styles.formTextarea} 
                   placeholder="Write something sweet..."
-                  maxLength={200} 
+                  maxLength={5000} 
                 ></textarea>
                 <div style={{ textAlign: 'right', fontSize: '12px', color: '#888', marginTop: '5px', fontFamily: 'var(--font-comfortaa)' }}>
-                    {formData.message.length}/200 characters
+                    {formData.message.length}/5000 characters
                 </div>
             </div>
 
