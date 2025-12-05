@@ -19,9 +19,11 @@ type Guest = {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
 
+    const API_BASE_URL = "https://weddinginvitation-production-a4b6.up.railway.app";
+
     const fetchGuests = async () => {
         try {
-        const res = await fetch("http://localhost:3000/api/rsvp/list");
+        const res = await fetch(`${API_BASE_URL}/api/rsvp/list`);
         const json = await res.json();
         if (json.success) {
             setGuests(json.data);
@@ -41,7 +43,7 @@ type Guest = {
         if (!window.confirm("Yakin mau hapus data ini?")) return;
 
         try {
-        const res = await fetch(`http://localhost:3000/api/rsvp/delete/${id}`, {
+        const res = await fetch(`${API_BASE_URL}/api/rsvp/delete/${id}`, {
             method: "DELETE",
         });
         const json = await res.json();

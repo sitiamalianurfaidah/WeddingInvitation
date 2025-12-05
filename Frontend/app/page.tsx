@@ -25,8 +25,10 @@ export default function Home() {
     setStatus("loading");
     setResponseMsg("");
 
+    const API_BASE_URL = "https://weddinginvitation-production-a4b6.up.railway.app";
+
     try {
-      const res = await fetch("http://localhost:3000/api/rsvp/submit", {
+      const res = await fetch(`${API_BASE_URL}/api/rsvp/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -41,7 +43,7 @@ export default function Home() {
             if (result.redirectUrl.startsWith('http')) {
               window.location.href = result.redirectUrl;
             } else {
-              window.location.href = `http://localhost:3000${result.redirectUrl}`;
+              window.location.href = `${API_BASE_URL}${result.redirectUrl}`;
             }
           }, 1500);
         }

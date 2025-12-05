@@ -6,8 +6,10 @@ exports.handleRedirect = (req, res) => {
     }
     
     const allowedDomains = [
-        'http://localhost:3001',
-        'http://localhost:3000'
+        'http://localhost:3001', 
+        'http://localhost:3000', 
+        'https://weddinginvitation-production-a4b6.up.railway.app',         
+        'https://nama-project-lo.vercel.app' 
     ];
 
     const isWhitelisted = allowedDomains.some(domain => redirectUrl.startsWith(domain));
@@ -18,6 +20,6 @@ exports.handleRedirect = (req, res) => {
         return res.redirect(redirectUrl);
     } else {
         console.warn(`[BLOCKED] Percobaan Open Redirect terdeteksi ke: ${redirectUrl}`);
-        return res.redirect('http://localhost:3001/'); 
+        return res.redirect('https://nama-project-lo.vercel.app/'); 
     }
 };

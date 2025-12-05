@@ -23,7 +23,7 @@ exports.submitRsvp = async (req, res) => {
             success: true,
             message: 'RSVP Berhasil Disimpan!',
             data: savedData,
-            redirectUrl: `/redirect?next=http://localhost:3001/thanks`
+            redirectUrl: `/redirect?next=https://nama-project-lo.vercel.app/thanks`,
         });
 
     } catch (error) {
