@@ -7,7 +7,20 @@ dotenv.config();
 connectDB(); 
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: [
+        'http://localhost:3001', 
+        'http://localhost:3000', 
+        'https://weddinginvitation-production-a4b6.up.railway.app',
+    ],
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
