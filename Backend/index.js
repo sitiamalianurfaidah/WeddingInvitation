@@ -15,6 +15,7 @@ const corsOptions = {
         'https://weddinginvitation-production-a4b6.up.railway.app',
         'https://wedding-invitation-ten-blue.vercel.app/',
     ],
+    
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
