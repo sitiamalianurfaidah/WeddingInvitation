@@ -9,12 +9,7 @@ connectDB();
 const app = express();
 
 const corsOptions = {
-    origin: [
-        'http://localhost:3001', 
-        'http://localhost:3000', 
-        'https://weddinginvitation-production-a4b6.up.railway.app',
-        'https://wedding-invitation-ten-blue.vercel.app',
-    ],
+    origin: '*',
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
